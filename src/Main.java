@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
@@ -63,8 +64,8 @@ public class Main {
             return matriz;
         }
         public static void jugar(String[][] matriz) {
-            int pJugador1 = obtenerpuntaje();
-            int pJugador2 = obtenerPuntaje();
+            int pJugador1 = obtenerPuntaje(matriz);
+            int pJugador2 = obtenerPuntaje(matriz);
             if (pJugador2 <= 20 && pJugador1 < pJugador2) {
                 System.out.println("Jugador 2 es el ganador con " + pJugador2 + "puntos");
             } else if (pJugador1 <= 20 && pJugador2 < pJugador1) {
@@ -74,7 +75,24 @@ public class Main {
             }
         }
         public static int obtenerCartas(String[][] matriz){
+            Random numero = new  Random();
+            int num = numero.nextInt(12);
+            int pCarta = 0;
+            if (num == 0){
+                pCarta = 11;
+            } else if (0< num && num<9) {
+                pCarta = num+1;
+            } else if (8<num && num<12) {
+                pCarta = 10;
 
+            }
+            return pCarta;}
+            public static int obtenerPuntaje(String[][] matriz){
+                int puntaje = 0;
+                for (int i = 0; i < 3; i++){
+                    puntaje = puntaje + obtenerCartas(matriz);
+
+            }return puntaje;
         }
 
 
